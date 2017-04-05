@@ -25,6 +25,7 @@ class DocumentCategoriesController < ApplicationController
   # POST /document_categories.json
   def create
     @document_category = DocumentCategory.new(document_category_params)
+    @document_category.user = current_user
 
     respond_to do |format|
       if @document_category.save

@@ -25,7 +25,8 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-
+    @document.user = current_user
+    
     respond_to do |format|
       if @document.save
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
@@ -69,6 +70,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:title, :description, :user_id, :document_category_id, :downloads_count)
+      params.require(:document).permit(:title, :description, :user_id, :document_category_id, :downloads_count, :content)
     end
 end
