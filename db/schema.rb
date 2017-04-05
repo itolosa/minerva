@@ -36,12 +36,14 @@ ActiveRecord::Schema.define(version: 20170405034135) do
     t.integer  "user_id"
     t.integer  "document_category_id"
     t.integer  "downloads_count"
+    t.integer  "course_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "content_file_name"
     t.string   "content_content_type"
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
+    t.index ["course_id"], name: "index_documents_on_course_id"
     t.index ["document_category_id"], name: "index_documents_on_document_category_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
@@ -53,8 +55,10 @@ ActiveRecord::Schema.define(version: 20170405034135) do
     t.datetime "ends_at"
     t.integer  "user_id"
     t.string   "location"
+    t.integer  "course_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["course_id"], name: "index_events_on_course_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
