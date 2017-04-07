@@ -7,5 +7,7 @@ class User < ApplicationRecord
 
   has_many :documents
   has_many :events
+  has_many :moderations
+  has_many :moderated_courses, through: :moderations, source: :course
   has_many :document_categories
 end

@@ -16,9 +16,9 @@
       <tr>
         <td><%= document_category.name %></td>
         <td><%= document_category.description %></td>
-        <td><%= link_to 'Show', document_category %></td>
-        <td><%= link_to 'Edit', edit_document_category_path(document_category) %></td>
-        <td><%= link_to 'Destroy', document_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@course, document_category] %></td>
+        <td><%= link_to 'Edit', edit_course_document_category_path(@course, document_category) %></td>
+        <td><%= link_to 'Destroy', [@course, document_category], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Document Category', new_document_category_path %>
+<%= link_to 'New Document Category', new_course_document_category_path %>

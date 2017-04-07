@@ -24,9 +24,9 @@
         <td><%= event.ends_at %></td>
         <td><%= event.user %></td>
         <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@course, event] %></td>
+        <td><%= link_to 'Edit', edit_course_event_path(@course, event) %></td>
+        <td><%= link_to 'Destroy', [@course, event], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_course_event_path %>

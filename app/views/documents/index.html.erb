@@ -22,9 +22,9 @@
         <td><%= document.user %></td>
         <td><%= document.document_category %></td>
         <td><%= document.downloads_count %></td>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@course, document] %></td>
+        <td><%= link_to 'Edit', edit_course_document_path(@course, document) %></td>
+        <td><%= link_to 'Destroy', [@course, document], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Document', new_document_path %>
+<%= link_to 'New Document', new_course_document_path %>

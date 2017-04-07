@@ -1,4 +1,4 @@
-<%= form_for(document_category) do |f| %>
+<%= form_for([@course, document_category]) do |f| %>
   <% if document_category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(document_category.errors.count, "error") %> prohibited this document_category from being saved:</h2>
