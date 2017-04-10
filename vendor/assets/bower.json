@@ -1,0 +1,7 @@
+{
+  "name": "dsl-generated-dependencies",
+  "dependencies": {
+    "select2": "latest",
+    "uikit": "^3.0.0"
+  }
+}

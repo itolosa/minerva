@@ -12,7 +12,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.user || user.admin? || record.moderations.exists?(user: user)
+    (user == record.user) || user.has_role?(:admin) || (record.moderations.exists?(user: user))
   end
 
   def show?

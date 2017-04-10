@@ -5,4 +5,5 @@ class Course < ApplicationRecord
   belongs_to :user
   has_many :document_categories
   has_many :moderators, through: :moderations, source: :user
+  accepts_nested_attributes_for :moderators
 end

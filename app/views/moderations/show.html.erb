@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @moderation.user_id %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @moderation.course_id %>
+</p>
+
+<%= link_to 'Edit', edit_course_moderation_path(@course, @moderation) %> |
+<%= link_to 'Back', course_moderations_path %>

@@ -10,4 +10,16 @@ class User < ApplicationRecord
   has_many :moderations
   has_many :moderated_courses, through: :moderations, source: :course
   has_many :document_categories
+
+  def ransackable_attributes(auth_object = nil)
+    %w(email)
+  end
+
+  def ransackable_associations(auth_object = nil)
+    %w(email)
+  end
+
+  def ransortable_attributes(auth_object = nil)
+    []
+  end
 end

@@ -21,6 +21,12 @@
     <%= f.text_field :description %>
   </div>
 
+
+  <div class="field">
+    <%= f.label :moderator %>
+    <%= f.collection_select(:moderator_ids, course.moderators, :id, :email, {:prompt => "Please select"},{:class => "js-data-example-ajax uk-select form-control", :multiple => "multiple"} ) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
