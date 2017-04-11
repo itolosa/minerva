@@ -1,21 +1,135 @@
+<div class="uk-container uk-container-expand">
+  <ul class="uk-breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Mis Cursos</a></li>
+    <li><span href=""><%= @course.name %></span></li>
+  </ul>
+
+  <h1 class="uk-heading-primary">
+    <%= @course.name.capitalize %>
+    <a class="uk-button uk-button-secondary" href="#upload-modal" uk-toggle>Subir Material</a>
+  </h1>
+</div>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+<div class="uk-container uk-container-expand uk-margin-medium-top">
+  <div class="uk-grid-divider" uk-grid>
+    <div class="uk-width-3-4@m">
+      <%= search_form_for @search, url: course_documents_path(@course), html: {class: "uk-grid-small", "uk-grid": ''} do |f| %>
+        <div class="uk-width-3-5">
+          <%= f.search_field :title_cont, class: "uk-input", placeholder: "Buscar..." %>
+        </div>
+        <div class="uk-width-1-5">
+          <%= f.collection_select(:document_category_id_cont, @course.document_categories, :id, :name, {}, {class: "uk-select"}) %>
+        </div>
+        <div class="uk-width-1-5">
+          <%= f.submit 'Buscar', class: "uk-button uk-button-primary uk-width-1-1" %>
+        </div>
+      <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @course.description %>
-</p>
+      <% @course.document_categories.each do |document_category| %>
+        <h3 class="uk-heading-bullet"><%= document_category.name %></h3>
+        <ul class="uk-list uk-list-divider">
+          <% document_category.documents.each do |document| %>
+            <li>
+              <span class="uk-text-lead">
+                <a href="#"><%= document.title %></a>
+              </span>
+              <span class="uk-text-meta">
+                <%= document.user.email %>
+                <span class="uk-badge">+<%= document.download_count %></span>
+              </span>
+            </li>
+          <% end %>
+          <li>
+            <a href="#">Ver todos...</a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Moderators:</strong>
-  <% @course.moderators.each do |moderator| %>
-    - <%= moderator.email %>
-  <% end %>
-</p>
+    <div class="uk-width-1-4@m">
+      <div id="next-events">
+        <h2>Calendario</h2>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+        <div id="calendar" class="uk-width-1-1"></div>
+        
+        <ul class="uk-list">
+          <li>
+            <span class="uk-text-lead">
+              <a class="uk-link-reset" href="#">PEP 1</a>
+            </span>
+            <span class="uk-text-meta">
+              03-03-2017 11:00
+            </span>
+          </li>
+          <li>
+            <span class="uk-text-lead">
+              <a class="uk-link-reset" href="#">PEP 2</a>
+            </span>
+            <span class="uk-text-meta">
+              03-05-2017 11:00
+            </span>
+          </li>
+          <li>
+            <span class="uk-text-lead">
+              <a class="uk-link-reset" href="#">PEP 3</a>
+            </span>
+            <span class="uk-text-meta">
+              03-07-2017 11:00
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <hr>
+
+      <div id="my-documents">
+        <h3 class="uk-heading">Mis documentos</h3>
+
+        <ul class="uk-list">
+          <li><a href="#">Guía Estadística 1</a></li>
+          <li><a href="#">Clase 10</a></li>
+          <li><a href="#">Búsqueda de Patrones</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="upload-modal" class="uk-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">Subir Documento</h2>
+      <%= form_for [@course, Document.new], html: { class: "uk-form-stacked", uk: {grid: ''} } do |f| %>
+        
+        <div class="uk-margin">
+          <%= f.label :title, class: "uk-form-label" %>
+          <div class="uk-form-controls">
+            <%= f.text_field :title, class: "uk-input" %>
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <%= f.label :document_category, class: "uk-form-label" %>
+          <div class="uk-form-controls">
+            <%= f.select(:document_category_id, @course.document_categories.collect {|p| [ p.name, p.id ] }, {}, {class: "uk-select", id: "form-stacked-select"}) %>
+          </div>
+        </div>
+
+        <div class="uk-margin" uk-margin>
+          <div class="uk-placeholder uk-text-center">
+            <span uk-icon="icon: cloud-upload"></span>
+            <div uk-form-custom="target: true">
+              <%= f.file_field :content %>
+              <input class="uk-form-blank uk-form-width-medium" placeholder="Arrastra un archivo o elige uno">
+            </div>
+          </div>
+        </div>
+
+        <p class="uk-text-right">
+          <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+          <%= f.submit 'Subir', class: "uk-button uk-button-primary"%>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

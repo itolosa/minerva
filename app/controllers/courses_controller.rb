@@ -13,6 +13,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @search = Document.ransack(params[:q])
+    @documents = @search.result(distinct: true).limit(10)
     authorize @course
   end
 

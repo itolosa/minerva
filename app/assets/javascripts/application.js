@@ -13,8 +13,12 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require jqueryui
 //= require turbolinks
 //= require uikit/dist/js/uikit
+//= require uikit/dist/js/uikit-icons
 //= require select2
+//= require moment
+//= require fullcalendar
 //= require_tree .
 

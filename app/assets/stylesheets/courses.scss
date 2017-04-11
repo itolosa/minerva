@@ -1,3 +1,23 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* NavBar */
+nav#mobile-nav{
+  display: none;
+}
+
+@media screen and (max-width: 900px){
+  nav#desktop-nav{
+    display: none;
+  }
+
+  nav#mobile-nav{
+    display: flex;
+  }
+}
+
+/* BugFixes */
+.fc h2 {
+   font-size: 1.2em;
+}

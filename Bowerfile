@@ -5,3 +5,6 @@
 
 asset 'select2'
 asset 'uikit', '^3.0.0'
+asset 'jqueryui'
+asset 'moment'
+asset 'fullcalendar'

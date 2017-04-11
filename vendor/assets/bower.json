@@ -2,6 +2,9 @@
   "name": "dsl-generated-dependencies",
   "dependencies": {
     "select2": "latest",
-    "uikit": "^3.0.0"
+    "uikit": "^3.0.0",
+    "jqueryui": "latest",
+    "moment": "latest",
+    "fullcalendar": "latest"
   }
 }
